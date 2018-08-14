@@ -31,7 +31,7 @@ func (t *TOTP) URL(label, issuer string) string {
 	v.Add("digits", fmt.Sprintf("%d", t.Length))
 	v.Add("algorithm", "SHA1")
 
-	v.Add("issuer", issuer) // do I need this?
+	v.Add("issuer", issuer)
 
 	u.RawQuery = v.Encode()
 	return u.String()
