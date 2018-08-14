@@ -13,6 +13,7 @@ import (
 // URL constructs a URL appropriate for the token (i.e. for use in a
 // QR code).
 // URI keys specified here: https://github.com/google/google-authenticator/wiki/Key-Uri-Format
+// Typically label is the username for the service, and issuer is the service name
 func (t *TOTP) URL(label, issuer string) string {
 	var secret string
 	if t.IsBase32Secret {
