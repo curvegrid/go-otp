@@ -27,11 +27,11 @@ var cases = []struct {
 		Digits:         6,
 	},
 	{
-		Secret:         "SECRET",
+		Secret:         "FuY0c4SdIapPYOf3ZZmOEECpBkTf6UV00scbzvIFwOBV9r6g0wQHGhg9NO1vtEtsRLAH3SEw9j45Fe9QvuBeNBgH6h8nJj4qbWAp",
 		IsBase32Secret: false,
 		Issuer:         "SUIKA DENSHA",
 		Label:          "watermelon@example.com",
-		ExpectedURL:    "otpauth://totp/watermelon@example.com?algorithm=SHA1&digits=10&issuer=SUIKA+DENSHA&secret=SECRET",
+		ExpectedURL:    "otpauth://totp/watermelon@example.com?algorithm=SHA1&digits=10&issuer=SUIKA+DENSHA&secret=FuY0c4SdIapPYOf3ZZmOEECpBkTf6UV00scbzvIFwOBV9r6g0wQHGhg9NO1vtEtsRLAH3SEw9j45Fe9QvuBeNBgH6h8nJj4qbWAp",
 		ExpectedQR:     "test/suika_densha.png",
 		QRError:        nil,
 		Digits:         10,
@@ -59,6 +59,8 @@ func TestQR(t *testing.T) {
 		expected, _ := ioutil.ReadFile(c.ExpectedQR)
 
 		actual, err := totp.QR(c.Label, c.Issuer)
+
+		//ioutil.WriteFile(c.ExpectedQR, actual, 0644) // only use this when generating images for tests
 
 		if err == nil {
 			if bytes.Compare(actual, expected) != 0 {

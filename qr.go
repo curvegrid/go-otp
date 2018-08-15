@@ -38,7 +38,8 @@ func (t *TOTP) URL(label, issuer string) string {
 }
 
 // QR generates a byte slice containing the a QR code encoded as a
-// PNG with level Q error correction.
+// PNG with level Q (55%) error correction. Note that size is a factor of the amount of data encoded.
+// Big HMAC keys mean big QR codes. This is fine.
 func (t *TOTP) QR(label, issuer string) ([]byte, error) {
 	u := t.URL(label, issuer)
 	code, err := qr.Encode(u, qr.Q)
