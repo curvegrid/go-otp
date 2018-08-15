@@ -51,7 +51,6 @@ func TestURL(t *testing.T) {
 }
 
 func TestQR(t *testing.T) {
-
 	for _, c := range cases {
 		totp := &TOTP{Secret: c.Secret, IsBase32Secret: c.IsBase32Secret, Length: c.Digits}
 		totp.Get()
@@ -75,4 +74,24 @@ func TestQR(t *testing.T) {
 			}
 		}
 	}
+}
+
+func TestQRBadEncode(t *testing.T) {
+	totp := &TOTP{IsBase32Secret: true}
+	totp.Get()
+
+	_, err := totp.QR("a", longStringGenerator(10000))
+	if err == nil {
+		t.Error("Expected an error")
+	}
+}
+
+// generates a long string 10 chars at a time
+func longStringGenerator(length int) string {
+	str := ""
+	for i := 0; i < length; i += 10 {
+		str += "0123456789"
+	}
+
+	return str
 }
