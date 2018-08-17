@@ -3,3 +3,5 @@
 *.swp
 otp/otp
 *~
+.DS_Store
+vendor

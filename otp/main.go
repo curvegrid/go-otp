@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hgfischer/go-otp"
+	"github.com/curvegrid/go-otp"
 )
 
 var (
