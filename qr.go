@@ -1,7 +1,6 @@
 package otp
 
 import (
-	"encoding/base32"
 	"fmt"
 	"net/url"
 	"rsc.io/qr"
@@ -15,22 +14,15 @@ import (
 // URI keys specified here: https://github.com/google/google-authenticator/wiki/Key-Uri-Format
 // Typically label is the username for the service, and issuer is the service name
 func (t *TOTP) URL(label, issuer string) string {
-	var secret string
-	if t.IsBase32Secret {
-		secret = base32.StdEncoding.EncodeToString([]byte(t.Secret))
-	} else {
-		secret = t.Secret
-	}
 	u := url.URL{}
 	v := url.Values{}
 	u.Scheme = "otpauth"
 	u.Host = "totp"
 
 	u.Path = label
-	v.Add("secret", secret)
+	v.Add("secret", t.Secret)
 	v.Add("digits", fmt.Sprintf("%d", t.Length))
 	v.Add("algorithm", "SHA1")
-
 	v.Add("issuer", issuer)
 
 	u.RawQuery = v.Encode()
