@@ -1,15 +1,13 @@
 # OTP
 
-[![Build Status](https://travis-ci.org/hgfischer/go-otp.svg?branch=master)](https://travis-ci.org/hgfischer/go-otp)
-
 Package go-otp implements one-time-password generators used in 2-factor authentication systems like RSA-tokens and Google Authenticator. Currently this supports both HOTP (RFC-4226) and TOTP (RFC-6238).
 
-
+Forked from https://github.com/hgfischer/go-otp
 
 ## Install
 
 ```
-$ go get github.com/hgfischer/go-otp
+$ go get github.com/curvegrid/go-otp
 ```
 
 
